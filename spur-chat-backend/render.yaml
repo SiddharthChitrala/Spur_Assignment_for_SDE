@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: spur-chat-backend
+    env: node
+    buildCommand: |
+      npm install
+      npm run build
+      node -e "const Database = require('better-sqlite3'); const db = new Database('./chat.db'); console.log('Database initialized')"
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: GROQ_API_KEY
+        sync: false
